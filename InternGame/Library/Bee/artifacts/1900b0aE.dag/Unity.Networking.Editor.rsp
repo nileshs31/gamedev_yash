@@ -349,7 +349,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Library/PackageCache/com.unity.transport@1.3.0/Editor/RoslynAnalyzerFix.cs"
+"Library/PackageCache/com.unity.transport@1.3.4/Editor/RoslynAnalyzerFix.cs"
 -langversion:9.0
 
 /deterministic

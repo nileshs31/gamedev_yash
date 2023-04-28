@@ -1,3 +1,5 @@
+Library\Bee\artifacts\mvdfrm\Unity.Burst.Editor.ref.dll_E2F92DAB6C167CC9.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Burst.ref.dll_F30DFA20C0DD1968.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Collections.ref.dll_656D7410E7809ECD.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.EditorCoroutines.Editor.ref.dll_34ED10A34098B2DB.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.InputSystem.ref.dll_FD2EC87C14EBE081.mvfrm
@@ -47,6 +49,7 @@ Library\Bee\artifacts\mvdfrm\Unity.Services.Authentication.ref.dll_AA487F5786203
 Library\Bee\artifacts\mvdfrm\Unity.Services.Core.Analytics.ref.dll_EDA1682A714EA6BF.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Services.Core.Environments.ref.dll_7E0AC2CDE81D9C6D.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Services.Core.ref.dll_131AC9C5EC6E6517.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.Services.Lobbies.ref.dll_818EF1A799CB94D2.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Services.QoS.ref.dll_7A6B4C964C0CAC83.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Services.Relay.ref.dll_C9EEE57D61FD58EF.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.ShaderGraph.Editor.ref.dll_0F50152946DB09D0.mvfrm
