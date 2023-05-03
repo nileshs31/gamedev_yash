@@ -33,35 +33,37 @@ public class AiScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float puckMoveSpeed;
-
-
-        if(puckRb2d.position.y < puckBoundary.Down)
+        if (!Puck.wasGoal)
         {
+            float puckMoveSpeed;
 
-            if (isFirstTimeInOpponentsHalf)
+
+            if (puckRb2d.position.y < puckBoundary.Down)
             {
-                isFirstTimeInOpponentsHalf = false;
-                offsetXFromTarget = Random.Range(-1f, 1f);
+
+                if (isFirstTimeInOpponentsHalf)
+                {
+                    isFirstTimeInOpponentsHalf = false;
+                    offsetXFromTarget = Random.Range(-1f, 1f);
+                }
+                puckMoveSpeed = maxMoveSpeed * Random.Range(0.1f, 0.4f);
+
+
+                targetPos = new Vector2(Mathf.Clamp(puckRb2d.position.x + offsetXFromTarget, puckBoundary.Left, puckBoundary.Right),
+                                                    startPos.y);
             }
-            puckMoveSpeed = maxMoveSpeed * Random.Range(0.1f, 0.4f);
+
+            else
+            {
+                puckMoveSpeed = Random.Range(maxMoveSpeed * 0.5f, maxMoveSpeed);
+                targetPos = new Vector2(Mathf.Clamp(puckRb2d.position.x, puckBoundary.Left, puckBoundary.Right),
+                                        Mathf.Clamp(puckRb2d.position.y, puckBoundary.Down, puckBoundary.Up));
 
 
-            targetPos = new Vector2(Mathf.Clamp(puckRb2d.position.x + offsetXFromTarget, puckBoundary.Left,puckBoundary.Right),
-                                                startPos.y);    
+            }
+            rb2D.MovePosition(Vector2.MoveTowards(rb2D.position, targetPos, puckMoveSpeed * Time.fixedDeltaTime));
         }
-
-        else
-        {
-            puckMoveSpeed = Random.Range(maxMoveSpeed * 0.5f, maxMoveSpeed);
-            targetPos = new Vector2(Mathf.Clamp(puckRb2d.position.x, puckBoundary.Left, puckBoundary.Right),
-                                    Mathf.Clamp(puckRb2d.position.y, puckBoundary.Down, puckBoundary.Up));
-
-
-        }
-            rb2D.MovePosition(Vector2.MoveTowards(rb2D.position,targetPos,puckMoveSpeed * Time.fixedDeltaTime));
     }
-
 
 }
 
