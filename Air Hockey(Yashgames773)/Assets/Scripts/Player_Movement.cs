@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
-    
-    bool wasJustClicked = true; //Player Clicked the mouseButton
-    bool canMove;
-    Collider2D playerCollider;
+   
     public Transform boundaryHolder; //It will get the Boundary Position of all the direction
     Rigidbody2D rb2d;
+    Vector2 startingPosition;
 
     Boundary playerBoundary;
+   public Collider2D playerCollider { get; private set; }
+    public int? LockedFingerID { get; set; }
+    public PlayerController Controller;
 
-   public struct Boundary //Remembering the Position of boundaries
+    public struct Boundary //Remembering the Position of boundaries
     {
         public float Up, Down, Left, Right;
        
@@ -28,44 +30,34 @@ public class Player_Movement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
+        startingPosition = rb2d.position;
 
-         playerBoundary = new Boundary(boundaryHolder.GetChild(0).position.y, boundaryHolder.GetChild(1).position.y, //take the all the Boundaries position in their coordinates
+        playerBoundary = new Boundary(boundaryHolder.GetChild(0).position.y, boundaryHolder.GetChild(1).position.y, //take the all the Boundaries position in their coordinates
                                       boundaryHolder.GetChild(2).position.x, boundaryHolder.GetChild(3).position.x);
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Transforms a mouse screen position  into world position
+        Controller.Players.Add(this);
+    }
+    private void OnDisable()
+    {
+        Controller.Players.Remove(this);
 
-            if (wasJustClicked)
-            {
-                wasJustClicked = false; 
+    }
 
-                if (playerCollider.OverlapPoint(mousePos))
-                {
-                    canMove = true;
-                }
-                else
-                {
-                    canMove = false;
-                }
-            }
-         
 
-            if (canMove)
-            {
-                Vector2 mouseClampedPos = new Vector2(Mathf.Clamp(mousePos.x, playerBoundary.Left, playerBoundary.Right), 
-                                                      Mathf.Clamp(mousePos.y, playerBoundary.Down, playerBoundary.Up));
-                rb2d.MovePosition(mouseClampedPos); 
-            }
-        }
-        else
-        {
-            wasJustClicked = true;
-        }
+
+    public void MoveToPosition(Vector2 position)
+    {
+        Vector2 clampedMousePos = new Vector2(Mathf.Clamp(position.x, playerBoundary.Left,
+                                                  playerBoundary.Right),
+                                      Mathf.Clamp(position.y, playerBoundary.Down,
+                                                  playerBoundary.Up));
+        rb2d.MovePosition(clampedMousePos);
+    }
+    public void ResetPosition()
+    {
+        rb2d.position = startingPosition;
     }
 
 }

@@ -45,5 +45,8 @@ public class Puck : MonoBehaviour
     {
         rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, maxSpeed);
     }
-
+    public void CenterPuck()
+    {
+        rb2d.position = new Vector2(0, 0);
+    }
 }

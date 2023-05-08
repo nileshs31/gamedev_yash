@@ -3,7 +3,7 @@ using static Player_Movement;
 
 public class AiScript : MonoBehaviour
 {
-    public float maxMoveSpeed;
+    public static float maxMoveSpeed;
     private Rigidbody2D rb2D;
     private Vector2 startPos;
 
@@ -63,6 +63,10 @@ public class AiScript : MonoBehaviour
             }
             rb2D.MovePosition(Vector2.MoveTowards(rb2D.position, targetPos, puckMoveSpeed * Time.fixedDeltaTime));
         }
+    }
+    public void ResetPosition()
+    {
+        rb2D.position = startPos;
     }
 
 }
