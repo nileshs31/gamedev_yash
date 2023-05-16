@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1676054581176872688}
   - component: {fileID: 1676054581176872690}
   - component: {fileID: 1676054581176872461}
+  - component: {fileID: -1793777323072778057}
   m_Layer: 0
   m_Name: Player_2
   m_TagString: Untagged
@@ -171,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundaryHolder: {fileID: 7082859359917808538, guid: b87c9b83a0e36d547965488ed2ec6045, type: 3}
+  rb2d: {fileID: 0}
   Controller: {fileID: 3772792784898164720, guid: b05e83ebb3b1d814bbcd92e8ede62d10, type: 3}
 --- !u!114 &1676054581176872690
 MonoBehaviour:
@@ -214,3 +216,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1793777323072778057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676054581176872693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

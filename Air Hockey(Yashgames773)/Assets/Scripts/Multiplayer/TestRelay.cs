@@ -23,7 +23,7 @@ public class TestRelay : MonoBehaviour
     }
 
     [Command]
-    private async void CreateRelay()
+    public static async void CreateRelay()
     {
         try
         {
@@ -54,7 +54,7 @@ public class TestRelay : MonoBehaviour
     }
 
     [Command]
-    private async void JoinRelay(string joinCode)
+    public static async void JoinRelay(string joinCode)
     {
         try
         {

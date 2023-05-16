@@ -1,7 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode.Transports.UTP;
+using Unity.Networking.Transport.Relay;
+using Unity.Services.Relay;
+using Unity.Services.Relay.Models;
+using Mono.CSharp;
+using UnityEngine.UI;
+using System.IO;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -11,6 +20,10 @@ public class MainMenuManager : MonoBehaviour
     public GameObject soloModePanel;
     public GameObject CustomLobbyModePanel;
     public GameObject SettingPanel;
+    public GameObject CreditsPanel;
+   
+    public InputField nameText;
+   
     void Start()
     {
         mainMenuPanel.SetActive(true); 
@@ -19,7 +32,8 @@ public class MainMenuManager : MonoBehaviour
         soloModePanel.SetActive(false);
         CustomLobbyModePanel.SetActive(false);
         SettingPanel.SetActive(false);
-
+        CreditsPanel.SetActive(false);
+   
     }
     
     public void Play()
@@ -36,6 +50,11 @@ public class MainMenuManager : MonoBehaviour
     {
         mainMenuPanel.SetActive(false);
         SettingPanel.SetActive(true);
+    } 
+    public void CreditsButton()
+    {
+        mainMenuPanel.SetActive(false);
+        CreditsPanel.SetActive(true);
     }
     public void Back()
     {
@@ -44,6 +63,7 @@ public class MainMenuManager : MonoBehaviour
         playPanel.SetActive(false);
         htpPanel.SetActive(false);
         SettingPanel.SetActive(false);
+        CreditsPanel.SetActive(false);
     }
    
     public void SoloMode()
@@ -68,12 +88,23 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    public void CustomLobbyMode()
+    public async void CustomLobbyMode()
     {
         CustomLobbyModePanel.SetActive(true);
         playPanel.SetActive(false);
+        await UnityServices.InitializeAsync();
+        AuthenticationService.Instance.SignedIn += () =>
+        {
+            Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
+        };
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        TestRelay.CreateRelay();
+        SceneManager.LoadScene(3);
+      
+
     }
 
+    
     public void CustomLobbyBack()
     {
        
@@ -89,7 +120,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void Medium()
     {
-        AiScript.maxMoveSpeed = 10;
+       AiScript.maxMoveSpeed = 10;
         SceneManager.LoadScene(1);
 
     }
@@ -102,5 +133,26 @@ public class MainMenuManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void SaveToJson()
+    {
+        Name data = new Name();
+        data.name = nameText.text;
+       
+
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(Application.dataPath + "/Name.json", json);
+        Debug.Log("Executed");
+    }
+
+    public void LoadFromJson()
+    {
+        string json = File.ReadAllText(Application.dataPath + "/Name.json");
+        Name data = JsonUtility.FromJson<Name>(json);
+
+        nameText.text = data.name;
+        Debug.Log("Implemented");
+
     }
 }

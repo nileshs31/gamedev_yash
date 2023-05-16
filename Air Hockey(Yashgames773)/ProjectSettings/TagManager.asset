@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Player2Goal
   - PlayerGoal
+  - P1BG
   layers:
   - Default
   - TransparentFX

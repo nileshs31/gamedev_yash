@@ -7,7 +7,7 @@ public class Player_Movement : MonoBehaviour
 {
    
     public Transform boundaryHolder; //It will get the Boundary Position of all the direction
-    Rigidbody2D rb2d;
+    public  Rigidbody2D rb2d;
     Vector2 startingPosition;
 
     Boundary playerBoundary;
@@ -31,7 +31,7 @@ public class Player_Movement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         startingPosition = rb2d.position;
-
+  
         playerBoundary = new Boundary(boundaryHolder.GetChild(0).position.y, boundaryHolder.GetChild(1).position.y, //take the all the Boundaries position in their coordinates
                                       boundaryHolder.GetChild(2).position.x, boundaryHolder.GetChild(3).position.x);
     }
@@ -49,6 +49,7 @@ public class Player_Movement : MonoBehaviour
 
     public void MoveToPosition(Vector2 position)
     {
+       // if (!IsOwner) return;
         Vector2 clampedMousePos = new Vector2(Mathf.Clamp(position.x, playerBoundary.Left,
                                                   playerBoundary.Right),
                                       Mathf.Clamp(position.y, playerBoundary.Down,

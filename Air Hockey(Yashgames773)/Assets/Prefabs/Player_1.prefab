@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundaryHolder: {fileID: 5407317367146621631, guid: c8d2db5f84cd0ee49ab16e5aa9dc40a6, type: 3}
+  rb2d: {fileID: 537838042558343834}
   Controller: {fileID: 3772792784898164720, guid: b05e83ebb3b1d814bbcd92e8ede62d10, type: 3}
 --- !u!114 &537838042558343835
 MonoBehaviour:
