@@ -1,7 +1,10 @@
 ﻿using Unity.Netcode;
+using Unity.Networking.Transport;
+using Unity.Services.Lobbies.Models;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -110,18 +113,19 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        
 
-//        private bool IsCurrentDeviceMouse
-//        {
-//            get
-//            {
-////#if ENABLE_INPUT_SYSTEM
-////                return _playerInput.currentControlScheme == "KeyboardMouse";
-////#else
-////				return false;
-////#endif
-//            }
-//        }
+        //        private bool IsCurrentDeviceMouse
+        //        {
+        //            get
+        //            {
+        ////#if ENABLE_INPUT_SYSTEM
+        ////                return _playerInput.currentControlScheme == "KeyboardMouse";
+        ////#else
+        ////				return false;
+        ////#endif
+        //            }
+        //        }
 
 
         private void Awake()
@@ -146,16 +150,32 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+           
+
         }
+
+        
+
+      
 
         public override void OnNetworkSpawn()
         {
+            Vector3 pos = new Vector3(10, 0, 10);
             base.OnNetworkSpawn();
-            if(IsClient && IsOwner)
+           
+            if (IsClient && IsOwner)
             {
                 _playerInput = GetComponent<PlayerInput>();
                 _playerInput.enabled = true;
+                TargetTeleportRequest( pos);
             }
+
+        }
+
+        
+        public void TargetTeleportRequest( Vector3 Position2)
+        {
+            gameObject.transform.position = Position2;
         }
 
         private void Update()
@@ -175,6 +195,7 @@ namespace StarterAssets
             CameraRotation();
         }
 
+     
         private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
