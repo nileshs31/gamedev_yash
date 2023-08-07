@@ -41,7 +41,7 @@ public class UiManagerMultiplayer : MonoBehaviour
  
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
        
     }
 
@@ -60,7 +60,7 @@ public class UiManagerMultiplayer : MonoBehaviour
 
     public void Home()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 }

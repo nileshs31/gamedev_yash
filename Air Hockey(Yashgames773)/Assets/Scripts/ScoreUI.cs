@@ -13,9 +13,14 @@ public class ScoreUI : MonoBehaviour
     public Text player1ScoreText, player2ScoreText;
     private int player1Score, player2Score;
     public int maxScore;
+    public static int levelScore;
     public UiManager uiManager;
+   
 
-
+    private void Start()
+    {
+        maxScore = levelScore;
+    }
     private int Player2Score
     {
         get { return player2Score; }

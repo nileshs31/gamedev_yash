@@ -355,7 +355,8 @@ public class LobbyManager : MonoBehaviour {
     public void MM()
     {
         NetworkManager.Singleton.Shutdown();
-        SceneManager.LoadScene(0);
+       
+        SceneManager.LoadScene(1);
     }
 }
 

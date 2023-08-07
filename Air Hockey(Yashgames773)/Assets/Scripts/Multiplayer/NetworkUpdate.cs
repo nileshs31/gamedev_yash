@@ -23,6 +23,7 @@ public class NetworkUpdate : NetworkBehaviour
             // TestServerRpc(GetComponent<RectTransform>().anchoredPosition);
             // NV_clientTransform.Value = player.GetComponent<RectTransform>().anchoredPosition;
             clientTransformUpdateServerRpc(GetComponent<Transform>().position);
+            ball.transform.position = new Vector3 (0, 0, 0);    
         }
         if (IsHost)
         {
@@ -30,6 +31,7 @@ public class NetworkUpdate : NetworkBehaviour
             // ballClientRpc(ball.GetComponent<RectTransform>().anchoredPosition);
             NV_hostTransform.Value = -1 * GetComponent<Transform>().position;
             NV_ballTransform.Value = -1 * GetComponent<Transform>().position;
+            ball.transform.position = new Vector3(0, 0, 0);
         }
         //if(IsOwner && IsHost)
         //{
@@ -112,5 +114,6 @@ public class NetworkUpdate : NetworkBehaviour
     public void clientTransformUpdateServerRpc(Vector2 pos)
     {
         NV_clientTransform.Value = -1 * pos;
+      
     }
 }

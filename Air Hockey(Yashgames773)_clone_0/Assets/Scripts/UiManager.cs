@@ -19,7 +19,7 @@ public class UiManager : MonoBehaviour
     public Puck puckScript;
     public Player_Movement playerMovement;
     public AiScript aiScript;
-
+    public static int wins = 0;
     private void Start()
     {
         gamePlayPanel.SetActive(true);
@@ -42,6 +42,7 @@ public class UiManager : MonoBehaviour
         {
             LossText.SetActive(true);
             WinText.SetActive(false);
+            wins++;
 
         }
     }
@@ -75,7 +76,7 @@ public class UiManager : MonoBehaviour
 
     public void Home()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
 }
